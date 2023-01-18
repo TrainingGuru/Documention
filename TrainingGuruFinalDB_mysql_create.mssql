@@ -1,0 +1,92 @@
+CREATE TABLE `Trainer` (
+	`Trainer ID` int NOT NULL AUTO_INCREMENT,
+	`Name` varchar(255) NOT NULL,
+	`Email` varchar(255) NOT NULL,
+	`Password` varchar(255) NOT NULL,
+	`Workout ID` int,
+	PRIMARY KEY (`Trainer ID`)
+);
+
+CREATE TABLE `Client` (
+	`Client ID` int NOT NULL AUTO_INCREMENT,
+	`Trainer ID` int NOT NULL,
+	`Name` varchar(255) NOT NULL,
+	`Email` varchar(255) NOT NULL,
+	`Password` varchar(255) NOT NULL,
+	`Nutrition ID` int,
+	PRIMARY KEY (`Client ID`)
+);
+
+CREATE TABLE `Workout` (
+	`Workout ID` int NOT NULL AUTO_INCREMENT,
+	`Exercise ID` int NOT NULL,
+	PRIMARY KEY (`Workout ID`)
+);
+
+CREATE TABLE `Exercise` (
+	`Exercice ID` int NOT NULL AUTO_INCREMENT,
+	`Name` varchar(255) NOT NULL,
+	`Type` varchar(30) NOT NULL,
+	`Sets` int NOT NULL,
+	`Reps` int NOT NULL,
+	`Instructions` varchar(255) NOT NULL,
+	PRIMARY KEY (`Exercice ID`)
+);
+
+CREATE TABLE `ClientWorkout` (
+	`ClientWorkout ID` int NOT NULL AUTO_INCREMENT,
+	`Client ID` int NOT NULL,
+	`Workout ID` int NOT NULL,
+	`Date` DATE NOT NULL,
+	`Notes` json NOT NULL,
+	PRIMARY KEY (`ClientWorkout ID`)
+);
+
+CREATE TABLE `Nutrition` (
+	`Nutrition ID` int NOT NULL AUTO_INCREMENT,
+	`Date` DATE NOT NULL,
+	`Total Calories` int NOT NULL,
+	`Fats` int NOT NULL,
+	`Protein` int NOT NULL,
+	`Carbohydrates` int NOT NULL,
+	PRIMARY KEY (`Nutrition ID`)
+);
+
+CREATE TABLE `Goals` (
+	`Goal ID` int NOT NULL,
+	`Client ID` int NOT NULL,
+	`Goal Object` json NOT NULL
+);
+
+CREATE TABLE `Personal Best` (
+	`Client ID` int NOT NULL,
+	`Exercise ID` int NOT NULL,
+	`Personal Best` int NOT NULL
+);
+
+ALTER TABLE `Trainer` ADD CONSTRAINT `Trainer_fk0` FOREIGN KEY (`Workout ID`) REFERENCES `Workout`(`Workout ID`);
+
+ALTER TABLE `Client` ADD CONSTRAINT `Client_fk0` FOREIGN KEY (`Trainer ID`) REFERENCES `Trainer`(`Trainer ID`);
+
+ALTER TABLE `Client` ADD CONSTRAINT `Client_fk1` FOREIGN KEY (`Nutrition ID`) REFERENCES `Nutrition`(`Nutrition ID`);
+
+ALTER TABLE `Workout` ADD CONSTRAINT `Workout_fk0` FOREIGN KEY (`Exercise ID`) REFERENCES `Exercise`(`Exercice ID`);
+
+ALTER TABLE `ClientWorkout` ADD CONSTRAINT `ClientWorkout_fk0` FOREIGN KEY (`Client ID`) REFERENCES `Client`(`Client ID`);
+
+ALTER TABLE `ClientWorkout` ADD CONSTRAINT `ClientWorkout_fk1` FOREIGN KEY (`Workout ID`) REFERENCES `Workout`(`Workout ID`);
+
+ALTER TABLE `Goals` ADD CONSTRAINT `Goals_fk0` FOREIGN KEY (`Client ID`) REFERENCES `Client`(`Client ID`);
+
+ALTER TABLE `Personal Best` ADD CONSTRAINT `Personal Best_fk0` FOREIGN KEY (`Client ID`) REFERENCES `Client`(`Client ID`);
+
+ALTER TABLE `Personal Best` ADD CONSTRAINT `Personal Best_fk1` FOREIGN KEY (`Exercise ID`) REFERENCES `Exercise`(`Exercice ID`);
+
+
+
+
+
+
+
+
+
