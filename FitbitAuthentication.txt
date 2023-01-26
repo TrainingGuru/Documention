@@ -1,0 +1,44 @@
+
+Step 1 - Generate the Code Verifier and Code Challenge
+
+random string : b164aefbab412180d8213bb99701478fd6aea0abe12a1ff85fa1a918
+
+code verify : 0a0d50c1e2c2ed09c58dd3f6864bbee93de8725e359951f7191ecb1b
+
+code challanage : LTRxVF75waUFuUpKJ2kB84Bj0GXroyyDV4n1OsUgNi4
+
+Step 2 - Request Authorization to Fitbit User Data
+
+register the app
+
+then we run this with client id and code challange
+
+https://www.fitbit.com/oauth2/authorize?client_id=23994L&response_type=code
+&code_challenge=LTRxVF75waUFuUpKJ2kB84Bj0GXroyyDV4n1OsUgNi4&code_challenge_method=S256
+&scope=activity%20heartrate%20location%20nutrition%20oxygen_saturation%20profile
+%20respiratory_rate%20settings%20sleep%20social%20temperature%20weight
+
+code in url gives = 189a94fd5940e3678242e0d0e6046b9e74011bb4
+
+
+
+
+now we need change auth code for access token
+
+base encode
+23994L:8c4bbf153c894b2223ff80f0dbfb7ba2
+
+authentication = MjM5OTRMOjhjNGJiZjE1M2M4OTRiMjIyM2ZmODBmMGRiZmI3YmEy
+
+access : eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk5NEwiLCJzdWIiOiI5VDNRVkQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcm94eSBycHJvIHJudXQgcnNsZSByYWN0IHJyZXMgcmxvYyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc0NzcxMzcyLCJpYXQiOjE2NzQ3NDI1NzJ9.kctEyZnn4ulJFKoHM4mzga7T7oNIXkkx5UEF_LKSaaY
+
+refresh e43d6978399d34c678d138c8f33c955e86ab06047ab8900ab73f8f8ee8f97fc3
+
+
+
+
+using refrsh token above we can run a request and get new accecc and refresh
+
+new access eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzk5NEwiLCJzdWIiOiI5VDNRVkQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcm94eSBycHJvIHJudXQgcnNsZSByYWN0IHJsb2MgcnJlcyByd2VpIHJociBydGVtIiwiZXhwIjoxNjc0NzcyNDE3LCJpYXQiOjE2NzQ3NDM2MTd9.AvLPqatmaNgaRKN-iBZWfo3tcKtRzG1Peml4nej7j-Y
+
+new refresh = 2a98ca671de242032abd5ea09f3c2be0c03d963443f9f4971dc424d71bcb5657
